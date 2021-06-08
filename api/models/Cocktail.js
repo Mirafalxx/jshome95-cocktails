@@ -12,6 +12,7 @@ const CocktailSchema = new mongoose.Schema({
   },
   image: String,
   published: Boolean,
+  recipe: String,
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

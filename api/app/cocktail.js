@@ -10,6 +10,7 @@ router.post('/', auth, permit('admin'), async (req, res) => {
     const cocktaillData = {
       title: req.body.title,
       published: req.body.published,
+      recipe: req.recipe,
       user: req.user,
       ingredients: req.body.ingredients,
     };

@@ -35,6 +35,7 @@ const run = async () => {
     {
       title: 'Gin tonic',
       published: false,
+      recipe: 'Shake and bip bop',
       user: admin,
       ingredients: [
         { title: 'Gin', amount: '50cl' },
@@ -44,6 +45,7 @@ const run = async () => {
     {
       title: 'Cuba libre',
       published: false,
+      recipe: 'Shake and bip bop',
       user,
       ingredients: [
         { title: 'Bacardi black', amount: '50cl' },
