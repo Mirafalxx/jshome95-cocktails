@@ -1,29 +1,29 @@
-import React from 'react';
-import {AppBar, Grid, makeStyles, Toolbar, Typography} from "@material-ui/core";
-import {Link} from "react-router-dom";
-import {useSelector} from "react-redux";
+import React from "react";
+import { AppBar, Grid, makeStyles, Toolbar, Typography } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import UserMenu from "./Menu/UserMenu";
 import AnonymousMenu from "./Menu/AnonymousMenu";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   mainLink: {
-    color: 'inherit',
-    textDecoration: 'none',
-    '&:hover': {
-      color: 'inherit'
-    }
+    color: "inherit",
+    textDecoration: "none",
+    "&:hover": {
+      color: "inherit",
+    },
   },
   appBar: {
-    zIndex: theme.zIndex.drawer + 1
+    zIndex: theme.zIndex.drawer + 1,
   },
   staticToolbar: {
-    marginBottom: theme.spacing(2)
-  }
+    marginBottom: theme.spacing(2),
+  },
 }));
 
 const AppToolbar = () => {
   const classes = useStyles();
-  const user = useSelector(state => state.users.user);
+  const user = useSelector((state) => state.users.user);
 
   return (
     <>
@@ -32,20 +32,16 @@ const AppToolbar = () => {
           <Grid container justify="space-between" alignItems="center">
             <Grid item>
               <Typography variant="h6">
-                <Link to="/" className={classes.mainLink}>Computer parts shop</Link>
+                <Link to="/" className={classes.mainLink}>
+                  Cocktails List
+                </Link>
               </Typography>
             </Grid>
-            <Grid item>
-              {user ? (
-                <UserMenu user={user}/>
-              ) : (
-                <AnonymousMenu/>
-              )}
-            </Grid>
+            <Grid item>{user ? <UserMenu user={user} /> : <AnonymousMenu />}</Grid>
           </Grid>
         </Toolbar>
       </AppBar>
-      <Toolbar className={classes.staticToolbar}/>
+      <Toolbar className={classes.staticToolbar} />
     </>
   );
 };
