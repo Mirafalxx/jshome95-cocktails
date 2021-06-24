@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Avatar, IconButton, makeStyles, Menu, MenuItem } from '@material-ui/core';
-// import {logoutRequest} from "../../../../store/actions/usersActions";
+import { logoutRequest } from '../../../../store/actions/usersActions';
 import { apiURL } from '../../../../config';
 
 const useStyles = makeStyles((theme) => ({
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
 
 const UserMenu = ({ user }) => {
   const classes = useStyles();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -39,7 +39,7 @@ const UserMenu = ({ user }) => {
         <MenuItem disabled>{user.displayName}</MenuItem>
         <MenuItem>Profile</MenuItem>
         <MenuItem>My Account</MenuItem>
-        {/* <MenuItem onClick={() => dispatch(logoutRequest())}>Logout</MenuItem> */}
+        <MenuItem onClick={() => dispatch(logoutRequest())}>Logout</MenuItem>
       </Menu>
     </>
   );

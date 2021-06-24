@@ -1,11 +1,11 @@
 const path = require('path');
 const fs = require('fs');
 const multer = require('multer');
-const {nanoid} = require('nanoid');
+const { nanoid } = require('nanoid');
 const config = require('./config');
-const {tryToCreateDir} = require("./utils");
+const { tryToCreateDir } = require('./utils');
 
-const createMulter = dirName => {
+const createMulter = (dirName) => {
   const storage = multer.diskStorage({
     destination: async (req, file, cb) => {
       await tryToCreateDir(dirName);
@@ -17,16 +17,16 @@ const createMulter = dirName => {
       const filepath = path.join(dirName, filename);
 
       cb(null, filepath);
-    }
+    },
   });
 
-  return multer({storage});
+  return multer({ storage });
 };
 
-const products = createMulter('products');
+const cocktail = createMulter('cocktail');
 const avatar = createMulter('avatar');
 
 module.exports = {
-  products,
-  avatar
+  cocktail,
+  avatar,
 };

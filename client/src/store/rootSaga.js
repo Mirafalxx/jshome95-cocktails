@@ -2,7 +2,8 @@ import { all } from 'redux-saga/effects';
 import history from '../history';
 import historySagas from './sagas/historySagas';
 import usersSagas from './sagas/usersSagas';
+import cocktailsSagas from './sagas/cocktailsSagas';
 
 export default function* rootSaga() {
-  yield all([...historySagas(history), ...usersSagas]);
+  yield all([...historySagas(history), ...usersSagas, ...cocktailsSagas]);
 }

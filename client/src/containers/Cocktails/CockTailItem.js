@@ -7,7 +7,7 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
-import { CardMedia, makeStyles } from '@material-ui/core';
+import { CardMedia, makeStyles, CardContent, Button } from '@material-ui/core';
 
 import imageNotAvailable from '../../assets/images/imageNotAvailable.png';
 import { apiURL } from '../../config';
@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   },
 });
 
-const CockTailItem = ({ title, image, id }) => {
+const CockTailItem = ({ id, title, image, author, published }) => {
   const classes = useStyles();
 
   let cardImage = imageNotAvailable;
@@ -36,8 +36,17 @@ const CockTailItem = ({ title, image, id }) => {
       <Card className={classes.card}>
         <CardHeader title={title} />
         <CardMedia image={cardImage} title={title} className={classes.media} />
+        <CardContent>
+          Author :<b>{author}</b>
+        </CardContent>
+        <CardContent>{published !== 'false' ? <b>Опубликован</b> : <b>Не Опубликован</b>}</CardContent>
         <CardActions>
-          <IconButton component={Link} to={'/' + id}>
+          <Button color="secondary" variant="outlined">
+            Опубликовать
+          </Button>
+        </CardActions>
+        <CardActions>
+          <IconButton component={Link} to={'/cocktail/' + id}>
             <ArrowForwardIcon />
           </IconButton>
         </CardActions>
@@ -49,7 +58,6 @@ const CockTailItem = ({ title, image, id }) => {
 CockTailItem.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
   image: PropTypes.string,
 };
 

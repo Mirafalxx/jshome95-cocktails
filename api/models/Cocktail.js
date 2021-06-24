@@ -11,7 +11,12 @@ const CocktailSchema = new mongoose.Schema({
     required: true,
   },
   image: String,
-  published: Boolean,
+  published: {
+    type: String,
+    required: true,
+    default: false,
+    enum: [true, false],
+  },
   recipe: String,
   user: {
     type: mongoose.Schema.Types.ObjectId,

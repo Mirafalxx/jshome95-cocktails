@@ -1,9 +1,12 @@
+import { useDispatch } from 'react-redux';
 import { Grid, Typography, Button } from '@material-ui/core';
 import React, { useState } from 'react';
 import FormElement from '../../components/UI/Form/FormElement';
 import FileInput from '../../components/UI/Form/FileInput';
+import { createCocktailRequest } from '../../store/actions/cocktailsActions';
 
 const NewCocktail = () => {
+  const dispatch = useDispatch();
   const [state, setState] = useState({
     title: '',
     recipe: '',
@@ -20,7 +23,6 @@ const NewCocktail = () => {
   const fileChangeHandler = (e) => {
     const name = e.target.name;
     const file = e.target.files[0];
-
     setState((prevState) => ({
       ...prevState,
       [name]: file,
@@ -48,7 +50,6 @@ const NewCocktail = () => {
     setState((prev) => {
       const ingredients = [...prev.ingredients];
       const newIngredients = [...ingredients, { title: '', amount: '' }];
-
       return { ...prev, ingredients: newIngredients };
     });
   };
@@ -63,8 +64,19 @@ const NewCocktail = () => {
     });
   };
 
+  const createCocktailForm = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    const ingredients = JSON.stringify(state.ingredients);
+    formData.append('title', state.title);
+    formData.append('recipe', state.recipe);
+    formData.append('image', state.image);
+    formData.append('ingredients', ingredients);
+    dispatch(createCocktailRequest(formData));
+  };
   return (
-    <Grid container spacing={2} direction="column" component="form">
+    <Grid container spacing={2} direction="column" component="form" onSubmit={createCocktailForm}>
       <Typography variant="h3">Add new Cocktail</Typography>
       <Grid item>
         <FormElement required label="Title" name="title" value={state.title} onChange={inputChangeHandler} />

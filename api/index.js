@@ -15,7 +15,7 @@ app.use(cors());
 const port = 8000;
 
 app.use('/users', users);
-app.use('/cocktail', cocktail);
+app.use('/cocktails', cocktail);
 
 const run = async () => {
   await mongoose.connect(config.db.url, config.db.options);
